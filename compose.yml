@@ -1,5 +1,6 @@
 services:
   app:
+    image: ghcr.io/shiipou/ip-netmask-calculator:latest
     build: .
     ports:
       - "3000:8080"

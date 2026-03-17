@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Network Mask Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>🌐 IP Network Mask Calculator</h1>
+            <p>Visualize how a subnet mask determines the network address using the logical AND operation</p>
+        </header>
+
+        <section id="inputs">
+            <fieldset>
+                <legend>IP Address</legend>
+                <input type="number" min="0" max="255" value="192" data-octet="0" aria-label="First octet">
+                <span>.</span>
+                <input type="number" min="0" max="255" value="168" data-octet="1" aria-label="Second octet">
+                <span>.</span>
+                <input type="number" min="0" max="255" value="1" data-octet="2" aria-label="Third octet">
+                <span>.</span>
+                <input type="number" min="0" max="255" value="42" data-octet="3" aria-label="Fourth octet">
+            </fieldset>
+            <fieldset>
+                <legend>Subnet Mask (CIDR)</legend>
+                <label>
+                    <span>/</span>
+                    <input type="range" min="0" max="32" value="24">
+                    <output>/24</output>
+                </label>
+                <small>255.255.255.0</small>
+            </fieldset>
+        </section>
+
+        <section id="binary">
+            <h2>Binary Breakdown &amp; Logical AND</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">IP Address</th>
+                        <td></td>
+                    </tr>
+                    <tr aria-hidden="true">
+                        <th scope="row">AND</th>
+                        <td><hr></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Subnet Mask</th>
+                        <td></td>
+                    </tr>
+                    <tr aria-hidden="true">
+                        <th scope="row">=</th>
+                        <td><hr></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Network</th>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="results">
+            <h2>Results</h2>
+            <dl>
+                <div>
+                    <dt>Network Address</dt>
+                    <dd>192.168.1.0</dd>
+                </div>
+                <div>
+                    <dt>Broadcast Address</dt>
+                    <dd>192.168.1.255</dd>
+                </div>
+                <div>
+                    <dt>First Host</dt>
+                    <dd>192.168.1.1</dd>
+                </div>
+                <div>
+                    <dt>Last Host</dt>
+                    <dd>192.168.1.254</dd>
+                </div>
+                <div>
+                    <dt>Total Hosts</dt>
+                    <dd>254</dd>
+                </div>
+            </dl>
+        </section>
+
+        <footer>
+            <h3>Legend</h3>
+            <ul>
+                <li data-type="network"><span></span> Network bits (kept by AND)</li>
+                <li data-type="host"><span></span> Host bits (zeroed by AND)</li>
+            </ul>
+        </footer>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

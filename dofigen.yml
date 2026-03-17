@@ -1,0 +1,23 @@
+builders:
+  minify:
+    fromImage: node:alpine
+    workdir: /app
+    copy:
+      - paths:
+          - src/
+        target: /app/src/
+    run:
+      - npm install -g esbuild html-minifier-terser
+      - mkdir -p dist/js dist/css
+      - esbuild src/js/app.js --bundle --minify --outfile=dist/js/app.js
+      - esbuild src/css/styles.css --minify --outfile=dist/css/styles.css
+      - html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --minify-css true --minify-js true -o dist/index.html src/index.html
+fromImage: nginxinc/nginx-unprivileged:alpine
+copy:
+  - fromBuilder: minify
+    paths: /app/dist/
+    target: /usr/share/nginx/html/
+expose:
+  - 8080
+context:
+  - src/
